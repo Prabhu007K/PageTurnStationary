@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product — PageTurn Stationery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-row">
+      <a href="index.html" class="logo">PageTurn<span>Stationery</span></a>
+      <nav class="nav">
+        <a href="index.html#products">Shop</a>
+        <a href="index.html#about">About</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+      <div class="header-actions">
+        <button class="user-btn" id="user-btn" type="button">Login</button>
+        <button class="cart-btn" id="cart-toggle">
+          🛒 Cart <span class="cart-count" id="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container product-detail-page" id="product-page">
+    <a href="index.html#products" class="back-link">← Back to shop</a>
+    <div id="product-content"></div>
+    <div id="product-not-found" class="product-not-found hidden">
+      <h2>Product not found</h2>
+      <p>This item may have been removed.</p>
+      <a href="index.html#products" class="btn-primary">Browse products</a>
+    </div>
+  </main>
+
+  <aside class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button id="cart-close" aria-label="Close cart">&times;</button>
+    </div>
+    <ul class="cart-items" id="cart-items"></ul>
+    <div class="cart-footer">
+      <div class="cart-total">Total: ₹<span id="cart-total">0</span></div>
+      <button class="btn-primary btn-block" id="checkout-btn">Checkout</button>
+    </div>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+
+  <dialog id="login-modal">
+    <form id="login-form" class="login-modal-form">
+      <h3>Welcome back</h3>
+      <p class="login-sub">Sign in with your phone number or email</p>
+      <div class="login-tabs">
+        <button type="button" class="login-tab active" data-tab="phone">Phone</button>
+        <button type="button" class="login-tab" data-tab="email">Email</button>
+      </div>
+      <label>Name (optional)<input type="text" id="login-name" placeholder="Your name"></label>
+      <div id="phone-fields">
+        <label>Phone number<input type="tel" id="login-phone" pattern="[0-9]{10}" placeholder="10-digit mobile"></label>
+      </div>
+      <div id="email-fields" class="hidden">
+        <label>Email address<input type="email" id="login-email" placeholder="you@email.com"></label>
+      </div>
+      <p id="login-error" class="form-error-inline" hidden></p>
+      <div class="modal-actions">
+        <button type="button" class="btn-secondary" id="login-cancel">Cancel</button>
+        <button type="submit" class="btn-primary">Continue</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="account-modal" class="account-modal">
+    <div class="account-panel">
+      <div class="account-header">
+        <div>
+          <h3 id="account-name">Account</h3>
+          <p class="account-contact" id="account-contact"></p>
+        </div>
+        <button type="button" class="modal-close-btn" id="account-close" aria-label="Close">&times;</button>
+      </div>
+      <section class="purchase-history">
+        <h4>Purchase history</h4>
+        <p id="purchase-history-empty" class="purchase-empty">No orders yet. Your purchases will appear here after checkout.</p>
+        <ul id="purchase-history-list" class="purchase-history-list"></ul>
+      </section>
+      <div class="account-actions">
+        <button type="button" class="btn-secondary" id="logout-btn">Log out</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="checkout-modal">
+    <form id="checkout-form">
+      <h3>Complete your order</h3>
+      <label>Name<input type="text" id="cust-name" required></label>
+      <label>Phone<input type="tel" id="cust-phone" pattern="[0-9]{10}"></label>
+      <label>Email<input type="email" id="cust-email"></label>
+      <label>Address<textarea id="cust-address" rows="2" required></textarea></label>
+      <p class="checkout-hint">Phone or email required for order updates.</p>
+      <div class="modal-actions">
+        <button type="button" class="btn-secondary" id="checkout-cancel">Cancel</button>
+        <button type="submit" class="btn-primary">Place Order</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="success-modal">
+    <div class="success-content">
+      <div class="success-icon">✓</div>
+      <h3>Order placed!</h3>
+      <p id="order-summary"></p>
+      <button class="btn-primary" id="success-close">Continue shopping</button>
+    </div>
+  </dialog>
+
+  <footer class="footer">
+    <div class="container">© 2026 PageTurn Stationery</div>
+  </footer>
+
+  <script src="js/store.js"></script>
+  <script src="js/shop-common.js"></script>
+  <script src="js/product.js"></script>
+</body>
+</html>
